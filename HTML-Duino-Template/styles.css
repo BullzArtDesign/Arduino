@@ -1,0 +1,295 @@
+/*
+
+* Filename: styles.css
+* Description: base stylesheet for Arduino Server
+* Date: 06/12/2014
+* Version: 1.0.0
+* Author: BullzArtDesign
+
+*/
+
+@charset "utf-8";
+
+/* ======================================== */
+/* ========= BROWSER HTML5-RESET ========== */
+/* ======================================== */
+
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+body { line-height:1;}
+
+*:focus, *:active { outline: 0;}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display:block;}
+
+nav ul { list-style:none;}
+
+blockquote,q { quotes:none;}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after { content:''; content:none;}
+
+table { border-collapse:collapse; border-spacing:0;}
+
+::-webkit-input-placeholder { color: #009EA4;}
+:-moz-placeholder { color: #009EA4; }
+
+/* =================================== */
+/* ============ GLOBALS ============== */
+/* =================================== */
+
+* { margin:0; padding:0;}
+
+html { -webkit-font-smoothing: antialiased;}
+
+body {
+	background:#009EA4;
+	margin:0;
+	font-family:"Helvetica Neue",Lucida,sans-serif;
+	-webkit-font-smoothing:antialiased;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-touch-callout: none;
+}
+
+/* ==== TITLE STYLE ==== */
+
+h1, h2, h3, h4, h5, p { font-family:"Helvetica Neue",Lucida,sans-serif;}
+
+h1 {
+	font-size: 1.8em;
+	text-align: center;
+	text-transform: uppercase;
+	margin: 1em auto;
+	color: rgba(0, 0, 0, 0.19);
+}
+
+h2 { font-size: 1.6em; text-align: center;}
+h3 { font-size: 1.4em; text-align: center;}
+h4 { font-size: 1.2em; text-align: center;}
+h5 { font-size: 1.0em; text-align: center;}
+
+.small_text { font-size: 70%; color: #737373;}
+
+p { font-size: 1.0em; line-height: normal; padding: 4px 0;}
+
+/* ==== CLEARFIX ==== */
+
+.clearfix { zoom:1;}
+.clearfix:before,.clearfix:after { display:table; content:"";}
+.clearfix:after { clear:both;}
+
+/* ==== COLORS ==== */
+
+.red { background-color:#ff0e00;}
+.green { background-color:#5ba525;}
+.yellow { background-color:#fc0;}
+
+/* ==== ALIGNEMENT ==== */
+
+.center { text-align: center; margin: 0 auto;}
+.left { float: left; }
+.right { float: right; }
+
+/* ==== CONTENT ==== */
+
+.IO_box {
+	position:relative;
+	/* width:300px; */
+	width: 90%;
+	margin:1em auto;
+	padding:1.6em 0 1em;
+	top:50%;
+	border-radius:10px 10px 30px 30px;
+	box-shadow:0 3px 0 0 rgba(0,0,0,0.1);
+	background-color:#f1f5f6;
+	text-align: center;
+}
+
+.IO_box p { text-align: center; color: #009EA4; text-transform: uppercase;}
+.IO_box p.small_text { color:#737373; font-size: 70%;}
+
+h2.sw-name {
+	margin:0 auto 0.8em;
+	padding:.4em 0;
+	background-color:#009EA4;
+	text-align:center;
+	font-size:1.3em;
+	font-family:"Helvetica Neue",Lucida,sans-serif;
+	font-weight:200;
+	color:#f1f5f6;
+	letter-spacing:1px;
+	text-transform: uppercase;
+}
+
+/* ==== BUTTONS ==== */
+
+button {
+	-webkit-appearance: none;
+	height: 40px;
+	width: 90%;
+	border-radius: 6px;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-family: Helvetica Neue;
+	font-size: 1em;
+	cursor: pointer;
+	margin: 12px auto;
+
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+button.active {
+	background-color: #00A478;
+	border: 1px solid #00A478;
+	box-shadow: 0 4px 0 0 #018B66;
+	color: #FFF;
+}
+
+button.inactive {
+	background-color: #C8232C;
+	border: 1px solid #C8232C;
+	box-shadow: 0 4px 0 0 #AC1D25;
+	color: #FFF;
+}
+
+/* ==== SLIDER RANGE FOR SERVO ==== */
+
+input[type=range] {
+	-webkit-appearance: none;
+	width: 70%;
+	border-radius: 8px;
+	height: 7px;
+	border: 1px solid #bdc3c7;
+	background-color: #fff;
+	margin: 2em 1em;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background-color: #ecf0f1;
+	border: 1px solid #bdc3c7;
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	cursor: pointer;
+	margin-left: -2px;
+}
+
+input#rangeValue1,
+input#rangeValue2 {
+	padding: 0.4em;
+	border-radius: 6px;
+	-webkit-appearance: none;
+	border: 1px solid transparent;
+	background: transparent;
+	font-size: 1em;
+	color: #009EA4;
+	font-weight: 400;
+}
+
+/* ==== SWITCH RADIO FORM ==== */
+
+label { margin:1.5em auto;}
+input[type="checkbox"] { position:absolute; left:-9999px;}
+
+.slider-v1 {
+	position:relative;
+	display:block;
+	width:5.5em;
+	height:3em;
+	cursor:pointer;
+	border-radius:1.5em;
+	transition:350ms;
+	background:#009EA4;
+}
+
+.slider-v1:before {
+	position:absolute;
+	content:'';
+	width:2.5em;
+	height:2.5em;
+	top:.25em;
+	left:.3em;
+	border-radius:50%;
+	transition:250ms ease-in-out;
+	background:#F1F5F6;
+}
+
+.slider-v1:after {
+	position:absolute;
+	content:'';
+	width:1em;
+	height:1em;
+	top:1em;
+	left:6em;
+	border-radius:50%;
+	transition:250ms ease-in;
+	background:#dd4b39;
+}
+
+input:checked + .slider-v1:after { background:#0db100;}
+input:checked + .slider-v1:before { left:2.7em;}
+
+.an-read {
+	font-size:10em;
+	text-align:center;
+	font-family:"Helvetica Neue",Lucida,sans-serif;
+	color:#009EA4;
+}
+
+/* ==== SWITCH RADIO FORM ==== */
+
+.led {
+	width:30px;
+	height:30px;
+	display:block;
+	margin:1em auto;
+	text-align:center;
+	border-radius:15px;
+	cursor: pointer;
+	box-sizing: border-box;
+
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.red { border: 1px solid rgba(255, 14, 0, 0.80);}
+.green { border: 1px solid rgba(91, 166, 37, 0.80);}
+.yellow { border: 1px solid rgba(255, 204, 0, 0.80);}
+.blue { border: 1px solid rgba(0, 176, 240, 0.80);}
+
+.red,
+.green,
+.yellow,
+.blue { background-color: #e6e6e6;}
+
+.red.on { background-color: #ff0e00; border: 2px solid #ff0e00;}
+.green.on { background-color: #5ba525; border: 2px solid #5ba525;}
+.yellow.on { background-color: #ffcc00; border: 2px solid #ffcc00;}
+.blue.on { background-color: #00aff0; border: 2px solid #00aff0;}
+
+
+/* --- HACKS FOR FULLSCREEN WEBAPP ON iPhone 4, 4s, 5, 5s, 5c --- */
+@media screen and (max-width:500px) {
+	/* minimal-ui is active - fullscreen active */
+	body { padding-top: 20px;}
+}
+
+

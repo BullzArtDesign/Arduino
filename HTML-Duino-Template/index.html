@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Arduino Ajax I/O</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="apple-mobile-web-app-title" content="Arduino Server">
+		<meta name="format-detection" content="telephone=no">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+		<link rel="stylesheet" href="styles.css">
+
+		<script src="//code.jquery.com/jquery-latest.js"></script>
+
+		<script>
+			// YOUR SCRIPTS HERE
+
+			// BUTTONS CONTROL EXAMPLE
+			function turnOffButton(button) {
+				if (button.class="active"){
+					var xmlhttp;
+
+					if (window.XMLHttpRequest) {
+						xmlhttp=new XMLHttpRequest();
+					} else {
+						xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					xmlhttp.open("GET","?pin13=low",true);
+					xmlhttp.send();
+					button.setAttribute("class","inactive");
+					button.setAttribute("onClick","turnOnButton(this);");
+					button.innerHTML = "OFF";
+					return;
+				}
+			}
+
+			function turnOnButton(button) {
+				if (button.class="inactive") {
+					var xmlhttp;
+
+					if (window.XMLHttpRequest) {
+						xmlhttp=new XMLHttpRequest();
+					} else {
+						xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					xmlhttp.open("GET","?pin13=high",true);
+					xmlhttp.send();
+					button.setAttribute("class","active");
+					button.setAttribute("onClick","turnOffButton(this);");
+					button.innerHTML = "ON";
+					return;
+				}
+			}
+
+			$(document).ready(function(){
+				$('.led').click(function() {
+				    $(this).toggleClass('on');
+				});
+			});
+
+      function printValue(sliderID, textbox) {
+	      var x = document.getElementById(textbox);
+	      var y = document.getElementById(sliderID);
+	      x.value = y.value;
+      }
+      window.onload = function() {
+	      printValue('slider1', 'rangeValue1');
+	      printValue('slider2', 'rangeValue2');
+	    }
+
+		</script>
+	</head>
+	<body>
+		<div class="container">
+
+			<!-- ON/OFF SWITCH CONTROL 1 -->
+			<div class="IO_box">
+				<h2 class="sw-name">Switch Control A1</h2>
+			  <input type="checkbox" id="s1" />
+			  <label class="slider-v1" for="s1"></label>
+			</div>
+
+			<!-- ON/OFF SWITCH CONTROL 2 -->
+			<div class="IO_box">
+				<h2 class="sw-name">Switch Control A2</h2>
+			  <input type="checkbox" id="s2" checked="" />
+			  <label class="slider-v1" for="s2"></label>
+			</div>
+
+			<!-- VALUE TEXT RESULT -->
+			<div class="IO_box">
+				<h2 class="sw-name">Txt Result A3</h2>
+				<div class="an-read">...</div>
+			</div>
+
+			<!-- SLIDER CONTROL PAN & TILT -->
+			<div class="IO_box">
+				<h2 class="sw-name">Servo Control</h2>
+				<input id="slider1" type="range" min="0" max="360" step="8" value="180" onchange="printValue('slider1','rangeValue1')" />
+				<input id="rangeValue1" type="text" size="3" placeholder="180">
+
+				<div class="clearfix"></div>
+
+				<input id="slider2" type="range" min="0" max="360" step="8" value="180" onchange="printValue('slider2','rangeValue2')" />
+				<input id="rangeValue2" type="text" size="3" placeholder="180">
+			</div>
+
+			<!-- LED CONTROL -->
+			<div class="IO_box">
+				<h2 class="sw-name">LED Control</h2>
+				<div class="yellow led on"></div>
+				<div class="red led on"></div>
+				<div class="green led on"></div>
+				<div class="blue led on"></div>
+			</div>
+
+			<!-- BUTTONS CONTROL -->
+			<div class="IO_box">
+				<h2 class="sw-name">Buttons Control</h2>
+				<button id="button" class="inactive" onClick="turnOnButton(this);">OFF</button>
+				<button id="button" class="active" onClick="turnOffButton(this);">ON</button>
+				<p class="small_text">D10 to D13 used by Ethernet shield</p>
+			</div>
+
+		</div>
+	</body>
+</html>
